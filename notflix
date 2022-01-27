@@ -1,6 +1,9 @@
 #!/bin/sh
 
+# site is subject to change
 site="https://1337x.wtf"
+
+# replace whitespace with plus sign
 query=$(echo "$1" | tr ' ' '+')
 
 echo "Movie:" $query
