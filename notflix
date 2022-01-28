@@ -8,12 +8,12 @@ query=$(echo "$1" | tr ' ' '+')
 
 echo "Movie:" $query
 
-movie=$(curl -s $site/search/$query/1/ | grep -Eo "torrent\/[0-9]+\/[a-zA-Z0-9?&%-]*\/" | head -n 1)
+movie=$(curl $site/search/$query/1/ | grep -Eo "torrent\/[0-9]+\/[a-zA-Z0-9?&%-]*\/" | head -n 1)
 
-echo $movie
+echo "Link:" $movie
 
-magnet=$(curl -s $site/$movie | grep -Eo "magnet:\?xt=urn:btih:[0-9A-Z]*" | head -n 1)
+magnet=$(curl $site/$movie | grep -Eo "magnet:\?xt=urn:btih:[0-9A-Z]*" | head -n 1)
 
 echo "Magnet Link:" $magnet
 
-peerflix -k $magnet
+peerflix --mpv $magnet
